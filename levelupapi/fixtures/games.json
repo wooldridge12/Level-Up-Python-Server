@@ -1,0 +1,26 @@
+[
+    {
+        "model": "levelupapi.game",
+        "pk": 1,
+        "fields": {
+            "name": "Sorry",
+            "game_type": 1,
+            "description": "Here to have alot of fun.",
+            "number_of_players": 4,
+            "gamer": 1,
+            "maker": "Mikey"
+        }
+    },
+    {
+        "model": "levelupapi.game",
+        "pk": 3,
+        "fields": {
+            "name": "ESO",
+            "game_type": 1,
+            "description": "HERE FOR THE GUARS!.",
+            "number_of_players": 24,
+            "gamer": 1,
+            "maker": "Wooldridge"
+        }
+    }
+]
