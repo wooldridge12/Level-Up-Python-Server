@@ -1,0 +1,28 @@
+[
+    {
+        "model": "levelupapi.event",
+        "pk": 1,
+        "fields": {
+            "host": 1,
+            "game": 3,
+            "date": "1997-02-10",
+            "time": "10:30:00",
+            "description": "must catch all guars!!!",
+            "title": "Hunting guars!!!",
+            "attendees": [1]
+        }
+    },
+    {
+        "model": "levelupapi.event",
+        "pk": 2,
+        "fields": {
+            "host": 1,
+            "game": 1,
+            "date": "2010-10-12",
+            "time": "10:30:00",
+            "description": "here to leanr to play sorry",
+            "title": "playing sorry",
+            "attendees": [1, 2]
+        }
+    }
+]
