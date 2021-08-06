@@ -22,13 +22,16 @@ class GameView(ViewSet):
         # Uses the token passed in the `Authorization` header
         gamer = Gamer.objects.get(user=request.auth.user)
 
+        game_type = GameType.objects.get(pk = request.data["game_type"])
+
         # Create a new Python instance of the Game class
         # and set its properties from what was sent in the
         # body of the request from the client.
         game = Game()
         game.name = request.data["name"]
         game.description = request.data["description"]
-        game.number_of_players = request.data["numberOfPlayers"]
+        game.number_of_players = request.data["number_of_players"]
+        game.game_type = game_type
         game.gamer = gamer
         game.maker = request.data["maker"]
 
@@ -145,5 +148,5 @@ class GameSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Game
-        fields = ('id', 'name', 'description','number_of_players', 'game_type', 'maker')
+        fields = ('id', 'name', 'description','number_of_players', 'game_type', 'maker')#__all__ can be used to just grab everything.
         depth = 1

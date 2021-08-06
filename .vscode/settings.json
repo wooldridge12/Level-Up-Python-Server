@@ -11,5 +11,6 @@
             "name": "levelup",
             "database": "db.sqlite3"
         }
-    ]
+    ],
+    "python.pythonPath": "/Users/michaelwooldridge/.local/share/virtualenvs/levelup-dk6tlt1g/bin/python"
 }
