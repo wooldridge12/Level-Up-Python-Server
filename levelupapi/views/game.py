@@ -5,7 +5,6 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
-from rest_framework import status
 from levelupapi.models import Game, GameType, Gamer
 
 
@@ -22,6 +21,8 @@ class GameView(ViewSet):
         # Uses the token passed in the `Authorization` header
         gamer = Gamer.objects.get(user=request.auth.user)
 
+        game_type = GameType.objects.get(pk = request.data["gameTypeId"])
+
         # Create a new Python instance of the Game class
         # and set its properties from what was sent in the
         # body of the request from the client.
@@ -29,13 +30,15 @@ class GameView(ViewSet):
         game.name = request.data["name"]
         game.description = request.data["description"]
         game.number_of_players = request.data["numberOfPlayers"]
+        game.game_type = game_type
         game.gamer = gamer
         game.maker = request.data["maker"]
+        game.skill_level = request.data["skillLevel"]
 
         # Use the Django ORM to get the record from the database
         # whose `id` is what the client passed as the
         # `gameTypeId` in the body of the request.
-        game_type = GameType.objects.get(pk=request.data["gameTypeId"])
+        game_type = GameType.objects.get(pk=request.data["gameTypeId"]) #This needs to refernce the client side code in GameForm in the onclick.
         game.game_type = game_type
 
         # Try to save the new game to the database, then
@@ -89,6 +92,7 @@ class GameView(ViewSet):
         game.number_of_players = request.data["numberOfPlayers"]
         game.gamer = gamer
         game.maker = request.data["maker"]
+        game.skill_level = request.data["skillLevel"]
 
         game_type = GameType.objects.get(pk=request.data["gameTypeId"])
         game.game_type = game_type
@@ -145,5 +149,5 @@ class GameSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Game
-        fields = ('id', 'name', 'description','number_of_players', 'game_type', 'maker')
+        fields = ('id', 'name', 'description','number_of_players', 'skill_level', 'game_type', 'maker')#__all__ can be used to just grab everything.
         depth = 1
