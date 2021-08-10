@@ -9,4 +9,11 @@ class Event(models.Model):
     description = models.CharField(max_length=150)
     title = models.CharField(max_length=150)
     attendees = models.ManyToManyField("Gamer", through="EventGamer", related_name="attending")
+    @property
+    def joined(self):
+        return self.__joined
+
+    @joined.setter
+    def joined(self, value):
+        self.__joined = value
     
